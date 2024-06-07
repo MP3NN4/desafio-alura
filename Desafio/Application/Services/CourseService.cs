@@ -78,12 +78,14 @@ namespace Desafio.Application.Services
                     System.Threading.Thread.Sleep(3000);
 
                     // Extrai as informações do curso
-                    var titleElement = driver.FindElement(By.CssSelector("h1"));
+                    var titleText = driver.FindElement(By.CssSelector(".curso-banner-course-title"));
+                    var categoryText = driver.FindElement(By.CssSelector(".course--banner-text-category"));
+                    var titleElement = titleText.Text + " " +categoryText.Text;
                     var professorElement = driver.FindElement(By.CssSelector(".instructor-title--name"));
                     var cargaHorariaElement = driver.FindElement(By.CssSelector(".courseInfo-card-wrapper-infos"));
                     var descricaoElement = driver.FindElement(By.CssSelector(".course-list"));
 
-                    var title = titleElement?.Text ?? "N/A";
+                    var title = titleElement ?? "N/A";
                     var professor = professorElement?.Text ?? "N/A";
                     var cargaHoraria = cargaHorariaElement?.Text ?? "N/A";
                     var descricao = descricaoElement?.Text ?? "N/A";
